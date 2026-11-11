@@ -1,5 +1,8 @@
+
 import express from 'express';
 import { fileURLToPath } from 'url';
+import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllProjects } from './src/models/projects.js';
 import path from 'path';
 
 const nodeEnv = process.env.NODE_ENV?.toLowerCase() || 'development';
@@ -12,21 +15,48 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 
-app.get('/', async (req, res) => {
-  const title = 'Home';
-  res.render('home', { title });
+// Home
+app.get('/', (req, res) => {
+  res.render('home', { title: 'Home' });
 });
+
+// Organizations - PostgreSQL
 app.get('/organizations', async (req, res) => {
-  const title = 'Our Partner Organizations';
-  res.render('organizations', { title });
+  try {
+    const organizations = await getAllOrganizations();
+
+    res.render('organizations', {
+      title: 'Our Partner Organizations',
+      organizations
+    });
+  } catch (error) {
+    console.error('Error loading organizations:', error);
+    res.status(500).send('Error loading organizations.');
+  }
 });
+
+// Projects
+
 app.get('/projects', async (req, res) => {
-  const title = 'Service Projects';
-  res.render('projects', { title });
+  try {
+    const projects = await getAllProjects();
+
+    res.render('projects', {
+      title: 'Service Projects',
+      projects
+    });
+  } catch (error) {
+    console.error('Error loading projects:', error);
+    res.status(500).send('Error loading projects.');
+  }
 });
-app.get('/categories', async (req, res) => {
-  const title = 'Service Project Categories';
-  res.render('categories', { title });
+
+
+// Categories
+app.get('/categories', (req, res) => {
+  res.render('categories', {
+    title: 'Service Project Categories'
+  });
 });
 
 app.listen(port, () => {

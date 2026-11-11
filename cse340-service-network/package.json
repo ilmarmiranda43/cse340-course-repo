@@ -2,6 +2,14 @@
   "name": "cse340-service-network",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {"start": "node server.js", "dev": "node --watch server.js"},
-  "dependencies": {"ejs": "^3.1.10", "express": "^4.21.2"}
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.23.1"
+  }
 }
