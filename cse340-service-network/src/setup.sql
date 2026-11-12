@@ -65,6 +65,69 @@ WHERE NOT EXISTS (
     WHERE p.organization_id = o.organization_id AND p.title = s.title
 );
 
+
+-- =============================================
+-- WEEK 02 - SERVICE PROJECT CATEGORIES
+-- =============================================
+
+-- Create category table
+CREATE TABLE IF NOT EXISTS category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL UNIQUE
+);
+
+-- Create many-to-many relationship
+CREATE TABLE IF NOT EXISTS project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_pc_project
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    CONSTRAINT fk_pc_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+);
+
+-- Insert categories
+INSERT INTO category (name)
+VALUES
+    ('Community Development'),
+    ('Environmental Sustainability'),
+    ('Social Support')
+ON CONFLICT (name) DO NOTHING;
+
+-- Associate projects with categories
+INSERT INTO project_category (
+    project_id,
+    category_id
+)
+SELECT
+    p.project_id,
+    c.category_id
+FROM project p
+JOIN organization o
+    ON p.organization_id = o.organization_id
+JOIN category c
+    ON c.name = CASE
+        WHEN o.name = 'BrightFuture Builders'
+            THEN 'Community Development'
+        WHEN o.name = 'GreenHarvest Growers'
+            THEN 'Environmental Sustainability'
+        WHEN o.name = 'UnityServe Volunteers'
+            THEN 'Social Support'
+    END
+WHERE o.name IN (
+    'BrightFuture Builders',
+    'GreenHarvest Growers',
+    'UnityServe Volunteers'
+)
+ON CONFLICT (project_id, category_id) DO NOTHING;
+
+
 COMMIT;
 
 -- Verification queries (read-only)
