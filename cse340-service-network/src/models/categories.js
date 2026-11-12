@@ -1,10 +1,12 @@
 
 import pool from "./db.js";
 
-export async function getAllCategories() {
+export const getAllCategories = async () => {
     try {
         const query = `
-      SELECT category_id, name
+      SELECT
+        category_id,
+        name
       FROM category
       ORDER BY name;
     `;
@@ -19,4 +21,4 @@ export async function getAllCategories() {
         );
         throw error;
     }
-}
+};

@@ -1,7 +1,7 @@
 
 import pool from "./db.js";
 
-export async function getAllOrganizations() {
+export const getAllOrganizations = async () => {
     try {
         const query = `
       SELECT
@@ -15,14 +15,13 @@ export async function getAllOrganizations() {
     `;
 
         const result = await pool.query(query);
-
         return result.rows;
+
     } catch (error) {
         console.error(
-            "Erro ao buscar organizações:",
+            "Error fetching organizations:",
             error.message
         );
-
         throw error;
     }
-}
+};

@@ -1,9 +1,9 @@
 
 import pool from "./db.js";
 
-export async function getAllProjects() {
-    try {
-        const query = `
+export const getAllProjects = async () => {
+  try {
+    const query = `
       SELECT
         p.project_id,
         p.title,
@@ -17,15 +17,14 @@ export async function getAllProjects() {
       ORDER BY p.date, p.project_id;
     `;
 
-        const result = await pool.query(query);
+    const result = await pool.query(query);
+    return result.rows;
 
-        return result.rows;
-    } catch (error) {
-        console.error(
-            "Error fetching projects:",
-            error.message
-        );
-
-        throw error;
-    }
-}
+  } catch (error) {
+    console.error(
+      "Error fetching projects:",
+      error.message
+    );
+    throw error;
+  }
+};
