@@ -3,6 +3,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
+import { getAllCategories } from './src/models/categories.js';
 import path from 'path';
 
 const nodeEnv = process.env.NODE_ENV?.toLowerCase() || 'development';
@@ -53,11 +54,28 @@ app.get('/projects', async (req, res) => {
 
 
 // Categories
-app.get('/categories', (req, res) => {
-  res.render('categories', {
-    title: 'Service Project Categories'
-  });
+
+app.get('/categories', async (req, res) => {
+  try {
+    const categories = await getAllCategories();
+
+    res.render('categories', {
+      title: 'Service Project Categories',
+      categories
+    });
+
+  } catch (error) {
+    console.error(
+      'Error loading categories:',
+      error
+    );
+
+    res.status(500).send(
+      'Error loading categories.'
+    );
+  }
 });
+
 
 app.listen(port, () => {
   console.log(`Server running on http://127.0.0.1:${port}`);
