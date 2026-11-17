@@ -1,0 +1,367 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f8f7;
+    color: #102c3a;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header */
+
+.site-header {
+    background: #103d35;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-container {
+    max-width: 1120px;
+    margin: auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+    text-decoration: underline;
+}
+
+/* Main content */
+
+.project-page {
+    max-width: 1120px;
+    margin: auto;
+    padding: 65px 24px 80px;
+}
+
+.eyebrow,
+.card-tag {
+    color: #007c6c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.page-intro {
+    margin-bottom: 36px;
+}
+
+.page-intro h1 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.2;
+    margin: 25px 0;
+}
+
+.page-intro p {
+    color: #52636b;
+    font-size: 16px;
+}
+
+/* Project Cards */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    border: 1px solid #dce8e4;
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0 8px 22px rgba(16, 44, 58, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(16, 44, 58, 0.12);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card h2 {
+    font-size: 21px;
+    line-height: 1.35;
+    margin: 18px 0;
+}
+
+.project-card h2 a {
+    color: #102c3a;
+    text-decoration: none;
+}
+
+.project-card h2 a:hover,
+.card-footer a:hover {
+    text-decoration: underline;
+}
+
+.card-description {
+    color: #52636b;
+    font-size: 14px;
+}
+
+.card-details {
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.card-details p {
+    margin: 7px 0;
+}
+
+.card-footer {
+    border-top: 1px solid #e5eeea;
+    padding-top: 16px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.card-footer span {
+    font-size: 12px;
+    color: #687b7b;
+}
+
+.card-footer a {
+    color: #007c6c;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.details-link {
+    display: inline-block;
+    background: #103d35;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 7px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.details-link:hover {
+    background: #006c5e;
+}
+
+.empty-state {
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-page {
+        padding-top: 35px;
+    }
+}
+
+/* =========================================
+   WEEK 03 - DETAIL PAGES
+========================================= */
+
+.detail-card {
+    max-width: 850px;
+    background: #ffffff;
+    border: 1px solid #dce8e4;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 22px rgba(16, 44, 58, 0.05);
+}
+
+.detail-card h2 {
+    color: #102c3a;
+    font-size: 25px;
+    margin: 20px 0;
+}
+
+.detail-description {
+    color: #52636b;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Project date and location */
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.detail-info-item {
+    background: #f5f8f7;
+    border: 1px solid #e5eeea;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-label {
+    color: #007c6c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.detail-info-item strong {
+    color: #102c3a;
+    font-size: 16px;
+}
+
+/* Partner organization */
+
+.detail-organization {
+    border-top: 1px solid #e5eeea;
+    padding-top: 25px;
+    margin-top: 30px;
+}
+
+.detail-organization h3 {
+    font-size: 22px;
+    margin: 12px 0;
+}
+
+.detail-organization h3 a,
+.organization-email {
+    color: #007c6c;
+    text-decoration: none;
+}
+
+.detail-organization h3 a:hover,
+.organization-email:hover {
+    text-decoration: underline;
+}
+
+.detail-organization p {
+    color: #52636b;
+}
+
+/* Organization logo */
+
+.organization-detail-card {
+    text-align: left;
+}
+
+.organization-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f8f7;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.organization-logo {
+    width: 160px;
+    height: 160px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Navigation */
+
+.detail-navigation {
+    max-width: 850px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.back-link,
+.secondary-link {
+    color: #007c6c;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.back-link:hover,
+.secondary-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .detail-card {
+        padding: 24px;
+    }
+
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-navigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .organization-logo {
+        width: 120px;
+        height: 120px;
+    }
+}

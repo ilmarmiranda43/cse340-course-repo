@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <title>
+    <%= title %> | Service Network
+  </title>
+  <link rel="stylesheet" href="/css/projects.css">
 </head>
-<body>
-  <main>
-    <h1><%= title %></h1>
 
-    <div class="card-grid">
-      <% if (projects && projects.length > 0) { %>
-        <% projects.forEach((project) => { %>
-          <article class="card">
-            <h2>
-              <a href="/project/<%= project.project_id %>"><%= project.title %></a>
-            </h2>
-            <p>
-              <strong>Organization:</strong>
-              <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
-            </p>
-          </article>
-        <% }); %>
-      <% } else { %>
-        <p>No upcoming service projects available yet.</p>
-      <% } %>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a class="brand" href="/">Service Network</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/organizations">Organizations</a>
+        <a href="/projects" aria-current="page">Projects</a>
+        <a href="/categories">Categories</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <div class="page-intro">
+      <span class="eyebrow">OUR COMMUNITY</span>
+
+      <h1>Upcoming Service Projects</h1>
+
+      <p>
+        Discover opportunities to serve, connect,
+        and make a difference in your community.
+      </p>
     </div>
+
+    <% if (projects && projects.length> 0) { %>
+      <div class="project-grid">
+
+        <% projects.forEach((project)=> { %>
+          <article class="project-card">
+
+            <div class="card-content">
+              <span class="card-tag">COMMUNITY SERVICE</span>
+
+              <h2>
+                <a href="/project/<%= project.project_id %>">
+                  <%= project.title %>
+                </a>
+              </h2>
+
+              <p class="card-description">
+                <%= project.description %>
+              </p>
+
+              <div class="card-details">
+                <p>
+                  <strong>Date:</strong>
+                  <%= new Date(project.date).toISOString().slice(0, 10) %>
+                </p>
+
+                <p>
+                  <strong>Location:</strong>
+                  <%= project.location %>
+                </p>
+              </div>
+
+              <div class="card-footer">
+                <span>Partner Organization</span>
+
+                <a href="/organization/<%= project.organization_id %>">
+                  <%= project.organization_name %>
+                </a>
+              </div>
+
+              <a class="details-link" href="/project/<%= project.project_id %>">
+                View Project Details &rarr;
+              </a>
+            </div>
+
+          </article>
+          <% }); %>
+
+      </div>
+      <% } else { %>
+        <div class="empty-state">
+          <h2>No Upcoming Projects</h2>
+          <p>Please check back soon for new opportunities.</p>
+        </div>
+        <% } %>
   </main>
+
 </body>
+
 </html>

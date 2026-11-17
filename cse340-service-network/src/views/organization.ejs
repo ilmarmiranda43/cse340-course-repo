@@ -4,45 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>
         <%= title %> | Service Network
     </title>
-    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/projects.css">
 </head>
 
 <body>
 
-    <main>
-        <h1>
-            <%= organization.name %>
-        </h1>
+    <header class="site-header">
+        <nav class="nav-container" aria-label="Main navigation">
 
-        <% if (organization.logo_filename) { %>
-            <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo" width="180">
-            <% } %>
+            <a class="brand" href="/">Service Network</a>
 
-                <h2>About the Organization</h2>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/organizations">Organizations</a>
+                <a href="/projects">Projects</a>
+                <a href="/categories">Categories</a>
+            </div>
 
-                <p>
-                    <%= organization.description || 'No description available.' %>
-                </p>
+        </nav>
+    </header>
 
-                <% if (organization.contact_email) { %>
-                    <p>
-                        <strong>Contact Email:</strong>
-                        <a href="mailto:<%= organization.contact_email %>">
-                            <%= organization.contact_email %>
-                        </a>
+    <main class="project-page">
+
+        <div class="page-intro">
+            <span class="eyebrow">OUR COMMUNITY PARTNERS</span>
+
+            <h1>
+                <%= organization.name %>
+            </h1>
+
+            <p>
+                Meet one of the organizations helping
+                make our community stronger.
+            </p>
+        </div>
+
+        <article class="detail-card organization-detail-card">
+
+            <% if (organization.logo_filename) { %>
+                <div class="organization-logo-container">
+
+                    <img class="organization-logo" src="/images/<%= organization.logo_filename %>"
+                        alt="<%= organization.name %> logo">
+
+                </div>
+                <% } %>
+
+                    <span class="card-tag">PARTNER ORGANIZATION</span>
+
+                    <h2>About the Organization</h2>
+
+                    <p class="detail-description">
+                        <%= organization.description || 'No description available.' %>
                     </p>
-                    <% } %>
 
-                        <p>
-                            <a href="/organizations">Back to Organizations</a>
-                        </p>
+                    <% if (organization.contact_email) { %>
+                        <div class="detail-organization">
 
-                        <p>
-                            <a href="/projects">Back to Upcoming Projects</a>
-                        </p>
+                            <span class="detail-label">CONTACT EMAIL</span>
+
+                            <p>
+                                <a class="organization-email" href="mailto:<%= organization.contact_email %>">
+                                    <%= organization.contact_email %>
+                                </a>
+                            </p>
+
+                        </div>
+                        <% } %>
+
+        </article>
+
+        <div class="detail-navigation">
+            <a class="back-link" href="/organizations">
+                &larr; Back to Organizations
+            </a>
+
+            <a class="secondary-link" href="/projects">
+                Explore Upcoming Projects &rarr;
+            </a>
+        </div>
+
     </main>
 
 </body>
