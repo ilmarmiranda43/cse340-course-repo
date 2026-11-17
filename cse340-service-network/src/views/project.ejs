@@ -92,6 +92,29 @@
         </a>
       </div>
 
+      <!-- PROJECT CATEGORIES - WEEK 03 -->
+      <section class="detail-organization">
+        <span class="detail-label">PROJECT CATEGORIES</span>
+
+        <% if (categories && categories.length> 0) { %>
+
+          <div class="category-tags">
+            <% categories.forEach((category)=> { %>
+              <a class="category-tag" href="/category/<%= category.category_id %>">
+                <%= category.name %>
+              </a>
+              <% }); %>
+          </div>
+
+          <% } else { %>
+            <p>No categories assigned to this project.</p>
+            <% } %>
+      </section>
+
+    </article>
+
+    </div>
+
     </article>
 
     <div class="detail-navigation">

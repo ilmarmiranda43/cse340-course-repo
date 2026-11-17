@@ -77,7 +77,31 @@
                         </div>
                         <% } %>
 
+                            <!-- ORGANIZATION SERVICE PROJECTS - WEEK 03 -->
+                            <section class="detail-organization">
+
+                                <span class="detail-label">OUR SERVICE PROJECTS</span>
+
+                                <% if (projects && projects.length> 0) { %>
+
+                                    <ul class="related-projects">
+                                        <% projects.forEach((project)=> { %>
+                                            <li>
+                                                <a href="/project/<%= project.project_id %>">
+                                                    <%= project.title %>
+                                                </a>
+                                            </li>
+                                            <% }); %>
+                                    </ul>
+
+                                    <% } else { %>
+                                        <p>No service projects registered yet.</p>
+                                        <% } %>
+
+                            </section>
+
         </article>
+
 
         <div class="detail-navigation">
             <a class="back-link" href="/organizations">

@@ -365,3 +365,52 @@ body {
         height: 120px;
     }
 }
+
+/* Category tags */
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.category-tag {
+    display: inline-block;
+    background: #e1f2ec;
+    color: #075d50;
+    border: 1px solid #b8ded1;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.category-tag:hover {
+    background: #cce8dc;
+}
+
+.category-tag:focus-visible,
+.related-projects a:focus-visible {
+    outline: 3px solid #007c6c;
+    outline-offset: 3px;
+}
+
+/* Related organization projects */
+
+.related-projects {
+    margin-top: 20px;
+    padding-left: 24px;
+}
+
+.related-projects li {
+    padding: 10px 0;
+}
+
+.related-projects a {
+    color: #075d50;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

@@ -45,3 +45,29 @@ export const getOrganizationDetails = async (id) => {
         throw error;
     }
 };
+
+export const getProjectsByOrganization = async (organizationId) => {
+    try {
+        const query = `
+      SELECT
+        project_id,
+        title,
+        description,
+        date,
+        location
+      FROM project
+      WHERE organization_id = $1
+      ORDER BY date, project_id;
+    `;
+
+        const result = await pool.query(query, [organizationId]);
+        return result.rows;
+
+    } catch (error) {
+        console.error(
+            "Error fetching organization projects:",
+            error.message
+        );
+        throw error;
+    }
+};

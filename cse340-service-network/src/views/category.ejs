@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %> | Service Network
+    </title>
+    <link rel="stylesheet" href="/css/projects.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="nav-container">
+            <a class="brand" href="/">Service Network</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/organizations">Organizations</a>
+                <a href="/projects">Projects</a>
+                <a href="/categories">Categories</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="project-page">
+
+        <div class="page-intro">
+            <span class="eyebrow">SERVICE CATEGORY</span>
+            <h1>
+                <%= category.name %>
+            </h1>
+            <p>Explore service projects in this category.</p>
+        </div>
+
+        <% if (projects.length> 0) { %>
+            <div class="project-grid">
+
+                <% projects.forEach((project)=> { %>
+                    <article class="project-card">
+
+                        <div class="card-content">
+                            <span class="card-tag">SERVICE PROJECT</span>
+
+                            <h2>
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </h2>
+
+                            <p class="card-description">
+                                <%= project.description %>
+                            </p>
+
+                            <div class="card-details">
+                                <p>
+                                    <strong>Location:</strong>
+                                    <%= project.location %>
+                                </p>
+                            </div>
+
+                            <div class="card-footer">
+                                <span>Partner Organization</span>
+                                <a href="/organization/<%= project.organization_id %>">
+                                    <%= project.organization_name %>
+                                </a>
+                            </div>
+
+                            <a class="details-link" href="/project/<%= project.project_id %>">
+                                View Project Details &rarr;
+                            </a>
+                        </div>
+
+                    </article>
+                    <% }); %>
+
+            </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <h2>No Projects Available</h2>
+                    <p>There are no projects in this category yet.</p>
+                </div>
+                <% } %>
+
+                    <div class="detail-navigation">
+                        <a class="back-link" href="/categories">
+                            &larr; Back to Categories
+                        </a>
+                    </div>
+
+    </main>
+</body>
+
+</html>
