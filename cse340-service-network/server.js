@@ -1,5 +1,4 @@
 
-import fs from 'node:fs';
 
 import express from 'express';
 import { fileURLToPath } from 'url';
@@ -19,20 +18,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
-const publicPath = path.join(__dirname, 'public');
-const cssPath = path.join(publicPath, 'css');
-
-console.log('=== STATIC FILES DIAGNOSTIC ===');
-console.log('Current directory:', process.cwd());
-console.log('Public directory:', publicPath);
-console.log('CSS directory exists:', fs.existsSync(cssPath));
-
-if (fs.existsSync(cssPath)) {
-  console.log('CSS files:', fs.readdirSync(cssPath));
-}
-
-console.log('================================');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
