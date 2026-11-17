@@ -28,7 +28,12 @@ export const getAllOrganizations = async () => {
 export const getOrganizationDetails = async (id) => {
     try {
         const query = `
-      SELECT *
+      SELECT
+        organization_id,
+        name,
+        description,
+        contact_email,
+        logo_filename
       FROM organization
       WHERE organization_id = $1;
     `;

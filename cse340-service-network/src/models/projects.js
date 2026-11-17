@@ -28,7 +28,7 @@ export const getAllProjects = async () => {
     throw error;
   }
 };
-export const getUpcomingProjects = async (number_of_projects) => {
+export const getUpcomingProjects = async (numberOfProjects) => {
   try {
     const query = `
       SELECT
@@ -47,7 +47,7 @@ export const getUpcomingProjects = async (number_of_projects) => {
       LIMIT $1;
     `;
 
-    const result = await pool.query(query, [number_of_projects]);
+    const result = await pool.query(query, [numberOfProjects]);
     return result.rows;
 
   } catch (error) {
