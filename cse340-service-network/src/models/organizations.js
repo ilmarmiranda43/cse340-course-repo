@@ -25,3 +25,23 @@ export const getAllOrganizations = async () => {
         throw error;
     }
 };
+export const getOrganizationDetails = async (id) => {
+    try {
+        const query = `
+      SELECT *
+      FROM organization
+      WHERE organization_id = $1;
+    `;
+
+        const result = await pool.query(query, [id]);
+
+        return result.rows[0] || null;
+
+    } catch (error) {
+        console.error(
+            "Error fetching organization details:",
+            error.message
+        );
+        throw error;
+    }
+};

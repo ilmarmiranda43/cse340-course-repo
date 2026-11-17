@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %> | Service Network
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <main>
+        <h1>
+            <%= organization.name %>
+        </h1>
+
+        <% if (organization.logo_filename) { %>
+            <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo" width="180">
+            <% } %>
+
+                <h2>About the Organization</h2>
+
+                <p>
+                    <%= organization.description || 'No description available.' %>
+                </p>
+
+                <% if (organization.contact_email) { %>
+                    <p>
+                        <strong>Contact Email:</strong>
+                        <a href="mailto:<%= organization.contact_email %>">
+                            <%= organization.contact_email %>
+                        </a>
+                    </p>
+                    <% } %>
+
+                        <p>
+                            <a href="/organizations">Back to Organizations</a>
+                        </p>
+
+                        <p>
+                            <a href="/projects">Back to Upcoming Projects</a>
+                        </p>
+    </main>
+
+</body>
+
+</html>
